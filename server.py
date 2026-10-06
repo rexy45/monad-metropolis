@@ -4,6 +4,7 @@ import numpy as np
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from recovery_agent import generate_emergency_docket
 
 # Initialize App
 app = FastAPI(
@@ -40,7 +41,7 @@ def load_artifacts():
     print(f"  -> Loaded Graph Nodes: {len(GRAPH_CACHE)} cached VPAs")
     print("  -> Status: In-Memory Gateway Ready (Target SLA < 30ms)\n")
 
-# Request Schema
+# Request Schemas
 class TransactionRequest(BaseModel):
     transaction_id: str = "TXN_982341"
     sender_id: str = "user_8910"
@@ -52,6 +53,13 @@ class TransactionRequest(BaseModel):
     screen_sharing_active: bool = False
     edge_intent_token: str = "UTILITY_DISCONNECT_SCAM" 
     # Options: "SAFE", "URGENT_KYC_THREAT", "UTILITY_DISCONNECT_SCAM", "LOTTERY_CLAIM"
+
+class EmergencyReportRequest(BaseModel):
+    transaction_id: str
+    amount: float
+    recipient_vpa: str
+    victim_statement: str
+    call_active_during_txn: bool = True
 
 # Severity weights for On-Device Edge Tokens (Zero raw text transmitted)
 TOKEN_SEVERITY_MAP = {
@@ -161,3 +169,26 @@ def evaluate_transaction(req: TransactionRequest):
 @app.get("/health")
 def health():
     return {"status": "online", "engine": "Dual-Plane Fraud Guard v2"}
+
+@app.post("/api/v1/agent/emergency-freeze")
+def run_autonomous_freeze(req: EmergencyReportRequest):
+    """
+    Triggers the Autonomous LLM Agent to parse fraud telemetry,
+    issue an ISO 20022 Camt.056 bank recall, and draft a 1930 NCRP docket.
+    """
+    start_time = time.perf_counter()
+
+    docket = generate_emergency_docket(
+        txn_id=req.transaction_id,
+        amount=req.amount,
+        payee_vpa=req.recipient_vpa,
+        victim_transcript=req.victim_statement,
+        call_active=req.call_active_during_txn
+    )
+
+    latency = round((time.perf_counter() - start_time) * 1000, 2)
+    return {
+        "status": "AUTONOMOUS_INTERVENTION_DISPATCHED",
+        "agent_execution_latency_ms": latency,
+        "docket": docket
+    }
