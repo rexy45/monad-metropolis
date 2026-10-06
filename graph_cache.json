@@ -1,0 +1,82 @@
+{
+  "accumulator_hub@upi": {
+    "mule_risk_centrality": 0.98,
+    "in_degree": 8,
+    "out_degree": 0
+  },
+  "power-bill@fakeaxis": {
+    "mule_risk_centrality": 0.942,
+    "in_degree": 12,
+    "out_degree": 1
+  },
+  "mule_1@upi": {
+    "mule_risk_centrality": 0.78,
+    "in_degree": 3,
+    "out_degree": 1
+  },
+  "mule_2@upi": {
+    "mule_risk_centrality": 0.78,
+    "in_degree": 3,
+    "out_degree": 1
+  },
+  "mule_3@upi": {
+    "mule_risk_centrality": 0.78,
+    "in_degree": 3,
+    "out_degree": 1
+  },
+  "mule_4@upi": {
+    "mule_risk_centrality": 0.78,
+    "in_degree": 3,
+    "out_degree": 1
+  },
+  "mule_5@upi": {
+    "mule_risk_centrality": 0.78,
+    "in_degree": 3,
+    "out_degree": 1
+  },
+  "user_1@upi": {
+    "mule_risk_centrality": 0.05,
+    "in_degree": 1,
+    "out_degree": 1
+  },
+  "user_2@upi": {
+    "mule_risk_centrality": 0.05,
+    "in_degree": 1,
+    "out_degree": 1
+  },
+  "user_3@upi": {
+    "mule_risk_centrality": 0.05,
+    "in_degree": 1,
+    "out_degree": 1
+  },
+  "user_4@upi": {
+    "mule_risk_centrality": 0.05,
+    "in_degree": 1,
+    "out_degree": 1
+  },
+  "user_5@upi": {
+    "mule_risk_centrality": 0.05,
+    "in_degree": 1,
+    "out_degree": 1
+  },
+  "user_6@upi": {
+    "mule_risk_centrality": 0.05,
+    "in_degree": 1,
+    "out_degree": 1
+  },
+  "user_7@upi": {
+    "mule_risk_centrality": 0.05,
+    "in_degree": 1,
+    "out_degree": 1
+  },
+  "user_8@upi": {
+    "mule_risk_centrality": 0.05,
+    "in_degree": 1,
+    "out_degree": 1
+  },
+  "user_9@upi": {
+    "mule_risk_centrality": 0.05,
+    "in_degree": 1,
+    "out_degree": 1
+  }
+}

@@ -1,0 +1,9 @@
+[
+  "amount",
+  "is_new_payee",
+  "payee_account_age_days",
+  "active_phone_call",
+  "screen_sharing_active",
+  "edge_intent_risk_score",
+  "graph_mule_centrality"
+]
